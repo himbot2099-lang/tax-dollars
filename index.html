@@ -12,26 +12,26 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0b0f1a;
-  --bg-subtle: #111827;
-  --card: rgba(255,255,255,0.04);
-  --card-border: rgba(255,255,255,0.08);
-  --card-hover: rgba(255,255,255,0.07);
-  --text: #f1f5f9;
-  --text-secondary: #8892a4;
-  --text-muted: #5a6478;
+  --bg: #f8f9fb;
+  --bg-subtle: #eef1f6;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --card-hover: #f1f5f9;
+  --text: #1a2332;
+  --text-secondary: #5a6a7e;
+  --text-muted: #94a3b8;
   --accent: #6366f1;
   --accent-light: #818cf8;
-  --accent-glow: rgba(99,102,241,0.3);
+  --accent-glow: rgba(99,102,241,0.15);
   --emerald: #10b981;
   --amber: #f59e0b;
   --rose: #f43f5e;
   --cyan: #06b6d4;
-  --shadow: 0 1px 3px rgba(0,0,0,0.3);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
   --radius: 16px;
-  --glass: rgba(255,255,255,0.03);
-  --glass-border: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.8);
+  --glass-border: rgba(0,0,0,0.08);
 }
 
 body {
@@ -132,7 +132,7 @@ header h1 {
   line-height: 1.1;
   margin-bottom: 16px;
   animation: fadeInDown 0.7s ease;
-  background: linear-gradient(135deg, #fff 0%, #c7d2fe 50%, #818cf8 100%);
+  background: linear-gradient(135deg, #1a2332 0%, #4f46e5 50%, #6366f1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -463,7 +463,7 @@ header p {
 
 .chart-center-label .center-label {
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.5);
+  color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 500;
@@ -703,7 +703,7 @@ footer {
   gap: 6px;
   padding: 10px 22px;
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #e2e8f0;
   border-radius: 100px;
   color: var(--text);
   font-size: 0.85rem;
@@ -1392,10 +1392,10 @@ function createPieChart(canvasId, labels, data, colors, centerText, centerSub) {
       c.textAlign = 'center';
       c.textBaseline = 'middle';
       c.font = "800 1.3rem 'Inter', sans-serif";
-      c.fillStyle = '#f1f5f9';
+      c.fillStyle = '#1a2332';
       c.fillText(centerText || '', cx, cy - 8);
       c.font = "500 0.65rem 'Inter', sans-serif";
-      c.fillStyle = 'rgba(255,255,255,0.5)';
+      c.fillStyle = '#94a3b8';
       c.letterSpacing = '0.08em';
       c.fillText((centerSub || '').toUpperCase(), cx, cy + 14);
       c.restore();
@@ -1428,7 +1428,7 @@ function createPieChart(canvasId, labels, data, colors, centerText, centerSub) {
             padding: 12,
             usePointStyle: true,
             pointStyleWidth: 10,
-            color: '#f1f5f9',
+            color: '#334155',
             font: { family: "'Inter', sans-serif", size: 11.5 },
             generateLabels(chart) {
               return chart.data.labels.map((label, i) => ({
@@ -1444,11 +1444,11 @@ function createPieChart(canvasId, labels, data, colors, centerText, centerSub) {
           }
         },
         tooltip: {
-          backgroundColor: 'rgba(15,23,42,0.95)',
-          borderColor: 'rgba(255,255,255,0.1)',
+          backgroundColor: 'rgba(255,255,255,0.95)',
+          borderColor: 'rgba(0,0,0,0.1)',
           borderWidth: 1,
-          titleColor: '#f1f5f9',
-          bodyColor: '#cbd5e1',
+          titleColor: '#1a2332',
+          bodyColor: '#5a6a7e',
           cornerRadius: 8,
           padding: 12,
           callbacks: {
