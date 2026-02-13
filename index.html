@@ -815,10 +815,6 @@ footer a:hover {
         <p class="chart-subtitle" id="fedChartSub"></p>
         <div class="chart-wrapper">
           <canvas id="fedChart"></canvas>
-          <div class="chart-center-label" id="fedCenterLabel">
-            <div class="center-amount" id="fedCenterAmt"></div>
-            <div class="center-label">Federal</div>
-          </div>
         </div>
       </div>
       <div class="chart-card">
@@ -826,10 +822,6 @@ footer a:hover {
         <p class="chart-subtitle" id="stateChartSub"></p>
         <div class="chart-wrapper" id="stateChartWrapper">
           <canvas id="stateChart"></canvas>
-          <div class="chart-center-label" id="stateCenterLabel">
-            <div class="center-amount" id="stateCenterAmt"></div>
-            <div class="center-label">State</div>
-          </div>
         </div>
         <div class="no-tax-note" id="noStateTaxNote" style="display:none;"></div>
       </div>
@@ -1520,7 +1512,6 @@ function calculate() {
   // Federal chart
   document.getElementById('fedChartTitle').textContent = 'Your Federal Tax Receipt';
   document.getElementById('fedChartSub').textContent = 'Your ' + fmtDollar(fedTax) + ' in federal taxes bought:';
-  document.getElementById('fedCenterAmt').textContent = fmtDollar(fedTax);
 
   if (fedChartInstance) fedChartInstance.destroy();
   fedChartInstance = createPieChart('fedChart',
@@ -1565,7 +1556,6 @@ function calculate() {
     noStateTaxNote.style.display = 'none';
     document.getElementById('stateReceiptThanks').style.display = '';
     document.getElementById('stateChartSub').textContent = 'Your ' + fmtDollar(stateTax) + ' in ' + stateName + ' taxes bought:';
-    document.getElementById('stateCenterAmt').textContent = fmtDollar(stateTax);
 
     stateChartInstance = createPieChart('stateChart',
       STATE_SPENDING_DEFAULT.map(s => s.name),
