@@ -396,10 +396,7 @@ header p {
   font-size: 1.7rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #fff, #c7d2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
 
 /* Count-up animation placeholder class */
@@ -636,6 +633,222 @@ header p {
   font-style: italic;
 }
 
+/* ═══ SECTION LABELS ═══ */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 16px;
+  padding-left: 2px;
+}
+
+/* ═══ STATE VS STATE COMPARISON ═══ */
+.compare-controls {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.compare-select-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-select-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.compare-select-group select {
+  padding: 12px 14px;
+  border: 1.5px solid var(--card-border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.compare-select-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.compare-vs {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  padding-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.compare-summary {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+  align-items: center;
+}
+
+.compare-state-box {
+  background: var(--bg-subtle);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.compare-state-box .cs-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.compare-state-box .cs-tax {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.compare-state-box .cs-rate {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.compare-diff {
+  text-align: center;
+  padding: 16px;
+}
+
+.compare-diff .diff-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.compare-diff .diff-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.compare-diff.savings { color: var(--emerald); }
+.compare-diff.extra { color: var(--rose); }
+
+.compare-chart-wrapper {
+  position: relative;
+  height: 340px;
+}
+
+/* ═══ NATIONAL COMPARISON ═══ */
+.deviation-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.deviation-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.deviation-tag.higher {
+  background: rgba(244,63,94,0.1);
+  border: 1px solid rgba(244,63,94,0.2);
+  color: var(--rose);
+}
+
+.deviation-tag.lower {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.2);
+  color: var(--emerald);
+}
+
+/* ═══ RANKINGS ═══ */
+.rankings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.ranking-card {
+  text-align: center;
+}
+
+.ranking-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.rank-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin: 12px 0 16px;
+  letter-spacing: -0.03em;
+}
+
+.rank-bar-container {
+  position: relative;
+  height: 32px;
+  background: var(--bg-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rank-bar-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+.rank-marker {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rank-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .compare-controls { flex-direction: column; }
+  .compare-vs { padding: 0; }
+  .compare-summary { grid-template-columns: 1fr; }
+  .rankings-grid { grid-template-columns: 1fr; }
+}
+
 /* ═══ LOCAL PLACEHOLDER ═══ */
 .local-placeholder {
   background: var(--card);
@@ -777,11 +990,11 @@ footer a:hover {
         <label for="locality">Locality <span style="font-weight:400;text-transform:none;font-size:0.75rem;opacity:0.6;">(optional)</span></label>
         <input type="text" id="locality" placeholder="City or county">
       </div>
-      <div class="input-group full-width">
-        <label for="income">Annual Income</label>
+      <div class="input-group full-width" style="text-align:center;">
+        <label for="income" style="text-align:center;">Annual Income</label>
         <div class="income-wrapper">
           <span class="dollar-sign">$</span>
-          <input type="text" id="income" inputmode="numeric" placeholder="75,000" autocomplete="off">
+          <input type="text" id="income" inputmode="numeric" value="75,000" style="text-align:center;" autocomplete="off">
         </div>
       </div>
     </div>
@@ -832,7 +1045,7 @@ footer a:hover {
         <div class="receipt-inner">
           <div class="receipt-header">
             <h3>🏛️ Federal Receipt</h3>
-            <div class="receipt-date">Tax Year 2025 · IRS / CBO Data</div>
+            <div class="receipt-date">Tax Year 2025 · <a href="https://www.cbo.gov/topics/budget" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-style:dotted;">IRS / CBO Data</a></div>
           </div>
           <div id="fedReceipt"></div>
           <div class="receipt-thankyou">★ Thank you, taxpayer ★</div>
@@ -842,10 +1055,72 @@ footer a:hover {
         <div class="receipt-inner">
           <div class="receipt-header">
             <h3 id="stateReceiptTitle">🗺️ State Receipt</h3>
-            <div class="receipt-date">Tax Year 2025 · Census / NASBO Data</div>
+            <div class="receipt-date" id="stateReceiptDate">Tax Year 2025 · Census Bureau FY2023 Data</div>
           </div>
           <div id="stateReceipt"></div>
           <div class="receipt-thankyou" id="stateReceiptThanks">★ Thank you, taxpayer ★</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STATE VS STATE COMPARISON ═══ -->
+    <div class="comparison-section reveal" id="comparisonSection" style="display:none;">
+      <div class="section-label">COMPARE</div>
+      <div class="chart-card" style="margin-bottom:28px;">
+        <h2>State vs State Comparison</h2>
+        <p class="chart-subtitle">Compare tax burdens and spending priorities between two states</p>
+        <div class="compare-controls">
+          <div class="compare-select-group">
+            <label>State A</label>
+            <select id="compareStateA"></select>
+          </div>
+          <div class="compare-vs">VS</div>
+          <div class="compare-select-group">
+            <label>State B</label>
+            <select id="compareStateB"></select>
+          </div>
+        </div>
+        <div class="compare-summary" id="compareSummary"></div>
+        <div class="compare-chart-wrapper">
+          <canvas id="compareChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ YOU VS NATIONAL AVERAGE ═══ -->
+    <div class="national-section reveal" id="nationalSection" style="display:none;">
+      <div class="section-label">VS NATIONAL</div>
+      <div class="chart-card" style="margin-bottom:28px;">
+        <h2 id="nationalTitle">Your State vs National Average</h2>
+        <p class="chart-subtitle" id="nationalSub">How your state's spending priorities compare to the national average</p>
+        <div class="compare-chart-wrapper">
+          <canvas id="nationalChart"></canvas>
+        </div>
+        <div id="nationalDeviations" class="deviation-list"></div>
+      </div>
+    </div>
+
+    <!-- ═══ STATE RANKINGS ═══ -->
+    <div class="rankings-section reveal" id="rankingsSection" style="display:none;">
+      <div class="section-label">RANKINGS</div>
+      <div class="rankings-grid">
+        <div class="chart-card ranking-card">
+          <h3>🏛️ Tax Burden</h3>
+          <p class="chart-subtitle">Effective rate rank among all states</p>
+          <div class="rank-value" id="rankTaxValue"></div>
+          <div class="rank-bar-container" id="rankTaxBar"></div>
+        </div>
+        <div class="chart-card ranking-card">
+          <h3>🎓 Education Spending</h3>
+          <p class="chart-subtitle">K-12 + Higher Ed combined %</p>
+          <div class="rank-value" id="rankEduValue"></div>
+          <div class="rank-bar-container" id="rankEduBar"></div>
+        </div>
+        <div class="chart-card ranking-card">
+          <h3>🏥 Healthcare Spending</h3>
+          <p class="chart-subtitle">Medicaid & Health %</p>
+          <div class="rank-value" id="rankHealthValue"></div>
+          <div class="rank-bar-container" id="rankHealthBar"></div>
         </div>
       </div>
     </div>
@@ -865,7 +1140,7 @@ footer a:hover {
   </div>
   <p class="fine-print">Data: IRS (2025 brackets), Tax Foundation, CBO/OMB (FY2025 est.), Census Bureau.<br>
   Single filer, standard deduction. Informational only — not tax advice.<br>
-  Built with ❤️ · <a href="https://github.com" target="_blank">View Source</a></p>
+  Built by <a href="https://ralcorn.com" target="_blank">Ralcorn Consulting LLC</a></p>
 </footer>
 
 <script>
@@ -898,6 +1173,10 @@ const FEDERAL_SPENDING = [
   { name: "Other",                       pct: 11, color: "#475569" }
 ];
 
+// State spending data: Census Bureau Annual Survey of State Government Finances, FY2023
+// Source: usgovernmentspending.com (derived from Census Bureau data)
+// Categories derived from Census functions: Education (split K-12/Higher Ed), Health Care,
+// Welfare, Protection, Transportation, General Government, Other (Pensions+Interest+Misc)
 const STATE_SPENDING_DEFAULT = [
   { name: "K-12 Education",              pct: 25, color: "#6366f1" },
   { name: "Medicaid & Health",           pct: 28, color: "#10b981" },
@@ -908,6 +1187,574 @@ const STATE_SPENDING_DEFAULT = [
   { name: "Government Admin",            pct: 5,  color: "#8b5cf6" },
   { name: "Other",                       pct: 12, color: "#475569" }
 ];
+
+const STATE_SPENDING = {
+  "Alabama": [
+    { name: "K-12 Education", pct: 16, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 39, color: "#10b981" },
+    { name: "Higher Education", pct: 11, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 4, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Alaska": [
+    { name: "K-12 Education", pct: 7, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 27, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 15, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 6, color: "#64748b" },
+    { name: "Public Assistance", pct: 5, color: "#f59e0b" },
+    { name: "Government Admin", pct: 7, color: "#8b5cf6" },
+    { name: "Other", pct: 27, color: "#475569" },
+  ],
+  "Arizona": [
+    { name: "K-12 Education", pct: 11, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 49, color: "#10b981" },
+    { name: "Higher Education", pct: 9, color: "#06b6d4" },
+    { name: "Transportation", pct: 4, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 8, color: "#f59e0b" },
+    { name: "Government Admin", pct: 2, color: "#8b5cf6" },
+    { name: "Other", pct: 13, color: "#475569" },
+  ],
+  "Arkansas": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 46, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 14, color: "#475569" },
+  ],
+  "California": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 43, color: "#10b981" },
+    { name: "Higher Education", pct: 5, color: "#06b6d4" },
+    { name: "Transportation", pct: 4, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 5, color: "#64748b" },
+    { name: "Public Assistance", pct: 9, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 20, color: "#475569" },
+  ],
+  "Colorado": [
+    { name: "K-12 Education", pct: 13, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 36, color: "#10b981" },
+    { name: "Higher Education", pct: 10, color: "#06b6d4" },
+    { name: "Transportation", pct: 5, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 20, color: "#475569" },
+  ],
+  "Connecticut": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 24, color: "#10b981" },
+    { name: "Higher Education", pct: 4, color: "#06b6d4" },
+    { name: "Transportation", pct: 9, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 4, color: "#f59e0b" },
+    { name: "Government Admin", pct: 6, color: "#8b5cf6" },
+    { name: "Other", pct: 39, color: "#475569" },
+  ],
+  "Delaware": [
+    { name: "K-12 Education", pct: 12, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 35, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 7, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 7, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 9, color: "#8b5cf6" },
+    { name: "Other", pct: 15, color: "#475569" },
+  ],
+  "District of Columbia": [
+    { name: "K-12 Education", pct: 13, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 6, color: "#10b981" },
+    { name: "Higher Education", pct: 3, color: "#06b6d4" },
+    { name: "Transportation", pct: 20, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 6, color: "#64748b" },
+    { name: "Public Assistance", pct: 27, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 21, color: "#475569" },
+  ],
+  "Florida": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 37, color: "#10b981" },
+    { name: "Higher Education", pct: 5, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 5, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 28, color: "#475569" },
+  ],
+  "Georgia": [
+    { name: "K-12 Education", pct: 12, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 34, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 9, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 5, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 2, color: "#8b5cf6" },
+    { name: "Other", pct: 24, color: "#475569" },
+  ],
+  "Hawaii": [
+    { name: "K-12 Education", pct: 15, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 25, color: "#10b981" },
+    { name: "Higher Education", pct: 15, color: "#06b6d4" },
+    { name: "Transportation", pct: 7, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 2, color: "#64748b" },
+    { name: "Public Assistance", pct: 5, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 28, color: "#475569" },
+  ],
+  "Idaho": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 32, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 12, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 5, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 6, color: "#8b5cf6" },
+    { name: "Other", pct: 22, color: "#475569" },
+  ],
+  "Illinois": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 37, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 5, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 30, color: "#475569" },
+  ],
+  "Indiana": [
+    { name: "K-12 Education", pct: 13, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 46, color: "#10b981" },
+    { name: "Higher Education", pct: 9, color: "#06b6d4" },
+    { name: "Transportation", pct: 7, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 9, color: "#f59e0b" },
+    { name: "Government Admin", pct: 2, color: "#8b5cf6" },
+    { name: "Other", pct: 11, color: "#475569" },
+  ],
+  "Iowa": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 47, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 16, color: "#475569" },
+  ],
+  "Kansas": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 46, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Kentucky": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 48, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 16, color: "#475569" },
+  ],
+  "Louisiana": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 41, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 25, color: "#475569" },
+  ],
+  "Maine": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 42, color: "#10b981" },
+    { name: "Higher Education", pct: 5, color: "#06b6d4" },
+    { name: "Transportation", pct: 7, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 10, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 21, color: "#475569" },
+  ],
+  "Maryland": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 39, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 9, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 6, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Massachusetts": [
+    { name: "K-12 Education", pct: 6, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 42, color: "#10b981" },
+    { name: "Higher Education", pct: 5, color: "#06b6d4" },
+    { name: "Transportation", pct: 10, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 12, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 18, color: "#475569" },
+  ],
+  "Michigan": [
+    { name: "K-12 Education", pct: 12, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 42, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 4, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 20, color: "#475569" },
+  ],
+  "Minnesota": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 45, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 9, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Mississippi": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 42, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 24, color: "#475569" },
+  ],
+  "Missouri": [
+    { name: "K-12 Education", pct: 7, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 47, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 5, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 22, color: "#475569" },
+  ],
+  "Montana": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 35, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 10, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 7, color: "#8b5cf6" },
+    { name: "Other", pct: 22, color: "#475569" },
+  ],
+  "Nebraska": [
+    { name: "K-12 Education", pct: 11, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 39, color: "#10b981" },
+    { name: "Higher Education", pct: 11, color: "#06b6d4" },
+    { name: "Transportation", pct: 9, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 6, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 14, color: "#475569" },
+  ],
+  "Nevada": [
+    { name: "K-12 Education", pct: 11, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 35, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 5, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 27, color: "#475569" },
+  ],
+  "New Hampshire": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 31, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 8, color: "#f59e0b" },
+    { name: "Government Admin", pct: 11, color: "#8b5cf6" },
+    { name: "Other", pct: 26, color: "#475569" },
+  ],
+  "New Jersey": [
+    { name: "K-12 Education", pct: 12, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 32, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 9, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 8, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 25, color: "#475569" },
+  ],
+  "New Mexico": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 50, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 4, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 18, color: "#475569" },
+  ],
+  "New York": [
+    { name: "K-12 Education", pct: 5, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 46, color: "#10b981" },
+    { name: "Higher Education", pct: 2, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 2, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 28, color: "#475569" },
+  ],
+  "North Carolina": [
+    { name: "K-12 Education", pct: 12, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 37, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 11, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 5, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 7, color: "#8b5cf6" },
+    { name: "Other", pct: 14, color: "#475569" },
+  ],
+  "North Dakota": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 30, color: "#10b981" },
+    { name: "Higher Education", pct: 10, color: "#06b6d4" },
+    { name: "Transportation", pct: 12, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 4, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 27, color: "#475569" },
+  ],
+  "Ohio": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 45, color: "#10b981" },
+    { name: "Higher Education", pct: 5, color: "#06b6d4" },
+    { name: "Transportation", pct: 4, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 26, color: "#475569" },
+  ],
+  "Oklahoma": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 41, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 10, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Oregon": [
+    { name: "K-12 Education", pct: 8, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 44, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 4, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 22, color: "#475569" },
+  ],
+  "Pennsylvania": [
+    { name: "K-12 Education", pct: 7, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 47, color: "#10b981" },
+    { name: "Higher Education", pct: 5, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 18, color: "#475569" },
+  ],
+  "Rhode Island": [
+    { name: "K-12 Education", pct: 7, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 38, color: "#10b981" },
+    { name: "Higher Education", pct: 6, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 11, color: "#f59e0b" },
+    { name: "Government Admin", pct: 8, color: "#8b5cf6" },
+    { name: "Other", pct: 18, color: "#475569" },
+  ],
+  "South Carolina": [
+    { name: "K-12 Education", pct: 12, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 37, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 7, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 5, color: "#f59e0b" },
+    { name: "Government Admin", pct: 6, color: "#8b5cf6" },
+    { name: "Other", pct: 22, color: "#475569" },
+  ],
+  "South Dakota": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 27, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 15, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 5, color: "#64748b" },
+    { name: "Public Assistance", pct: 5, color: "#f59e0b" },
+    { name: "Government Admin", pct: 7, color: "#8b5cf6" },
+    { name: "Other", pct: 24, color: "#475569" },
+  ],
+  "Tennessee": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 43, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 7, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 7, color: "#f59e0b" },
+    { name: "Government Admin", pct: 6, color: "#8b5cf6" },
+    { name: "Other", pct: 16, color: "#475569" },
+  ],
+  "Texas": [
+    { name: "K-12 Education", pct: 14, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 41, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 3, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Utah": [
+    { name: "K-12 Education", pct: 17, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 36, color: "#10b981" },
+    { name: "Higher Education", pct: 12, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 3, color: "#64748b" },
+    { name: "Public Assistance", pct: 4, color: "#f59e0b" },
+    { name: "Government Admin", pct: 6, color: "#8b5cf6" },
+    { name: "Other", pct: 16, color: "#475569" },
+  ],
+  "Vermont": [
+    { name: "K-12 Education", pct: 11, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 38, color: "#10b981" },
+    { name: "Higher Education", pct: 9, color: "#06b6d4" },
+    { name: "Transportation", pct: 8, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 5, color: "#64748b" },
+    { name: "Public Assistance", pct: 8, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 17, color: "#475569" },
+  ],
+  "Virginia": [
+    { name: "K-12 Education", pct: 11, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 44, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 9, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 4, color: "#8b5cf6" },
+    { name: "Other", pct: 15, color: "#475569" },
+  ],
+  "Washington": [
+    { name: "K-12 Education", pct: 11, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 42, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 5, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 2, color: "#8b5cf6" },
+    { name: "Other", pct: 22, color: "#475569" },
+  ],
+  "West Virginia": [
+    { name: "K-12 Education", pct: 10, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 38, color: "#10b981" },
+    { name: "Higher Education", pct: 8, color: "#06b6d4" },
+    { name: "Transportation", pct: 11, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 5, color: "#8b5cf6" },
+    { name: "Other", pct: 18, color: "#475569" },
+  ],
+  "Wisconsin": [
+    { name: "K-12 Education", pct: 9, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 39, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 6, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 6, color: "#f59e0b" },
+    { name: "Government Admin", pct: 8, color: "#8b5cf6" },
+    { name: "Other", pct: 21, color: "#475569" },
+  ],
+  "Wyoming": [
+    { name: "K-12 Education", pct: 7, color: "#6366f1" },
+    { name: "Medicaid & Health", pct: 26, color: "#10b981" },
+    { name: "Higher Education", pct: 7, color: "#06b6d4" },
+    { name: "Transportation", pct: 13, color: "#f97316" },
+    { name: "Public Safety & Corrections", pct: 4, color: "#64748b" },
+    { name: "Public Assistance", pct: 4, color: "#f59e0b" },
+    { name: "Government Admin", pct: 6, color: "#8b5cf6" },
+    { name: "Other", pct: 33, color: "#475569" },
+  ],
+};
+
+const STATE_SOURCES = {
+  "Alabama": { name: "Alabama Executive Budget Office", url: "https://budget.alabama.gov" },
+  "Alaska": { name: "Alaska Office of Management & Budget", url: "https://omb.alaska.gov" },
+  "Arizona": { name: "Arizona OSPB", url: "https://ospb.az.gov" },
+  "Arkansas": { name: "Arkansas Dept. of Finance & Administration", url: "https://www.dfa.arkansas.gov" },
+  "California": { name: "California Department of Finance", url: "https://ebudget.ca.gov" },
+  "Colorado": { name: "Colorado OSPB", url: "https://ospb.colorado.gov" },
+  "Connecticut": { name: "Connecticut OPM", url: "https://portal.ct.gov/OPM/Budget" },
+  "Delaware": { name: "Delaware Office of Management & Budget", url: "https://budget.delaware.gov" },
+  "District of Columbia": { name: "DC Office of the CFO", url: "https://cfo.dc.gov/page/budget-documents" },
+  "Florida": { name: "Florida Governor's Office", url: "https://www.flgov.com/budget" },
+  "Georgia": { name: "Georgia OPB", url: "https://opb.georgia.gov" },
+  "Hawaii": { name: "Hawaii Dept. of Budget & Finance", url: "https://budget.hawaii.gov" },
+  "Idaho": { name: "Idaho Division of Financial Management", url: "https://dfm.idaho.gov" },
+  "Illinois": { name: "Illinois Governor's Office of Management & Budget", url: "https://budget.illinois.gov" },
+  "Indiana": { name: "Indiana State Budget Agency", url: "https://www.in.gov/sba" },
+  "Iowa": { name: "Iowa Dept. of Management", url: "https://dom.iowa.gov" },
+  "Kansas": { name: "Kansas Division of the Budget", url: "https://budget.kansas.gov" },
+  "Kentucky": { name: "Kentucky OSBD", url: "https://osbd.ky.gov" },
+  "Louisiana": { name: "Louisiana Office of Planning & Budget", url: "https://www.doa.la.gov/doa/opb" },
+  "Maine": { name: "Maine Bureau of the Budget", url: "https://www.maine.gov/budget" },
+  "Maryland": { name: "Maryland DBM", url: "https://dbm.maryland.gov" },
+  "Massachusetts": { name: "Massachusetts Executive Office for A&F", url: "https://budget.digital.mass.gov" },
+  "Michigan": { name: "Michigan State Budget Office", url: "https://www.michigan.gov/budget" },
+  "Minnesota": { name: "Minnesota Management & Budget", url: "https://mn.gov/mmb/budget" },
+  "Mississippi": { name: "Mississippi Joint Legislative Budget Committee", url: "https://www.mississippi.edu/research/budget.asp" },
+  "Missouri": { name: "Missouri Office of Administration", url: "https://oa.mo.gov/budget-and-planning" },
+  "Montana": { name: "Montana Budget & Accounting", url: "https://budget.mt.gov" },
+  "Nebraska": { name: "Nebraska DAS Budget Division", url: "https://das.nebraska.gov/budget" },
+  "Nevada": { name: "Nevada Governor's Finance Office", url: "https://budget.nv.gov" },
+  "New Hampshire": { name: "New Hampshire DAS Budget", url: "https://das.nh.gov/budget" },
+  "New Jersey": { name: "New Jersey Office of Management & Budget", url: "https://www.nj.gov/treasury/omb" },
+  "New Mexico": { name: "New Mexico DFA", url: "https://www.nmdfa.state.nm.us" },
+  "New York": { name: "New York Division of the Budget", url: "https://www.budget.ny.gov" },
+  "North Carolina": { name: "North Carolina OSBM", url: "https://www.osbm.nc.gov" },
+  "North Dakota": { name: "North Dakota OMB", url: "https://www.nd.gov/omb" },
+  "Ohio": { name: "Ohio Office of Budget & Management", url: "https://obm.ohio.gov" },
+  "Oklahoma": { name: "Oklahoma OMES", url: "https://omes.ok.gov/budget" },
+  "Oregon": { name: "Oregon DAS Budget", url: "https://www.oregon.gov/das/Financial/Pages/Budget.aspx" },
+  "Pennsylvania": { name: "Pennsylvania Governor's Budget Office", url: "https://www.budget.pa.gov" },
+  "Rhode Island": { name: "Rhode Island OMB", url: "https://www.omb.ri.gov" },
+  "South Carolina": { name: "South Carolina Governor's Office", url: "https://governor.sc.gov/executive-budget" },
+  "South Dakota": { name: "South Dakota Bureau of Finance & Management", url: "https://bfm.sd.gov" },
+  "Tennessee": { name: "Tennessee Dept. of Finance & Administration", url: "https://www.tn.gov/finance/fa/fa-budget-information.html" },
+  "Texas": { name: "Texas Legislative Budget Board", url: "https://www.lbb.texas.gov" },
+  "Utah": { name: "Utah Governor's Office of Planning & Budget", url: "https://gopb.utah.gov" },
+  "Vermont": { name: "Vermont Dept. of Finance & Management", url: "https://finance.vermont.gov" },
+  "Virginia": { name: "Virginia Dept. of Planning & Budget", url: "https://dpb.virginia.gov" },
+  "Washington": { name: "Washington OFM", url: "https://ofm.wa.gov/budget" },
+  "West Virginia": { name: "West Virginia State Budget Office", url: "https://budget.wv.gov" },
+  "Wisconsin": { name: "Wisconsin DOA State Finances", url: "https://doa.wi.gov/Pages/StateFinances/CurrentBiennialBudget.aspx" },
+  "Wyoming": { name: "Wyoming Budget Division", url: "https://ai.wyo.gov/budget-division" },
+  "_default": { name: "U.S. Census Bureau", url: "https://www.census.gov/programs-surveys/state.html" }
+};
 
 const STATE_TAX = {
   "Alabama": {
@@ -1511,7 +2358,7 @@ function calculate() {
 
   // Federal chart
   document.getElementById('fedChartTitle').textContent = 'Your Federal Tax Receipt';
-  document.getElementById('fedChartSub').textContent = 'Your ' + fmtDollar(fedTax) + ' in federal taxes bought:';
+  document.getElementById('fedChartSub').innerHTML = 'Your ' + fmtDollar(fedTax) + ' in federal taxes bought: <a href="https://www.cbo.gov/topics/budget" target="_blank" rel="noopener" style="font-size:0.78rem;color:var(--accent-light);text-decoration:none;opacity:0.8;">(Source →)</a>';
 
   if (fedChartInstance) fedChartInstance.destroy();
   fedChartInstance = createPieChart('fedChart',
@@ -1550,27 +2397,31 @@ function calculate() {
     document.getElementById('stateChartSub').textContent = '';
     document.getElementById('stateReceipt').innerHTML = `<div style="padding:20px;text-align:center;color:#888;font-style:italic;">${stateName} has no state income tax — nothing to break down here! 🎉</div>`;
     document.getElementById('stateReceiptThanks').style.display = 'none';
+    const noTaxSourceInfo = STATE_SOURCES[stateName] || STATE_SOURCES["_default"];
+    document.getElementById('stateReceiptDate').innerHTML = 'Tax Year 2025 · <a href="' + noTaxSourceInfo.url + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-style:dotted;">' + noTaxSourceInfo.name + '</a>';
   } else {
     stateChartWrapper.style.display = 'block';
     
     noStateTaxNote.style.display = 'none';
     document.getElementById('stateReceiptThanks').style.display = '';
-    document.getElementById('stateChartSub').textContent = 'Your ' + fmtDollar(stateTax) + ' in ' + stateName + ' taxes bought:';
+    const stateSpending = STATE_SPENDING[stateName] || STATE_SPENDING_DEFAULT;
+    const stateSourceInfo = STATE_SOURCES[stateName] || STATE_SOURCES["_default"];
+    document.getElementById('stateChartSub').innerHTML = 'Your ' + fmtDollar(stateTax) + ' in ' + stateName + ' taxes bought: <a href="' + stateSourceInfo.url + '" target="_blank" rel="noopener" style="font-size:0.78rem;color:var(--accent-light);text-decoration:none;opacity:0.8;">(Source →)</a>';
+    document.getElementById('stateReceiptDate').innerHTML = 'Tax Year 2025 · <a href="' + stateSourceInfo.url + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-style:dotted;">' + stateSourceInfo.name + '</a>';
 
     stateChartInstance = createPieChart('stateChart',
-      STATE_SPENDING_DEFAULT.map(s => s.name),
-      STATE_SPENDING_DEFAULT.map(s => Math.round((s.pct/100)*stateTax*100)/100),
-      STATE_SPENDING_DEFAULT.map(s => s.color),
+      stateSpending.map(s => s.name),
+      stateSpending.map(s => Math.round((s.pct/100)*stateTax*100)/100),
+      stateSpending.map(s => s.color),
       fmtDollar(stateTax), stateName
     );
 
     let stateHTML = '';
-    STATE_SPENDING_DEFAULT.forEach(s => {
+    stateSpending.forEach(s => {
       const amt = (s.pct/100) * stateTax;
       stateHTML += `<div class="receipt-line"><span class="cat">${s.name}</span><span class="amt">${fmtDollar(amt)}</span><span class="pct-tag">${s.pct}%</span></div>`;
     });
     stateHTML += `<div class="receipt-total"><span>TOTAL</span><span>${fmtDollar(stateTax)}</span></div>`;
-    stateHTML += `<p style="font-size:0.7rem;color:#999;margin-top:12px;text-align:center;font-style:italic;">Based on national averages for state spending categories.</p>`;
     document.getElementById('stateReceipt').innerHTML = stateHTML;
   }
 
@@ -1593,6 +2444,217 @@ function calculate() {
   }, 50);
 
   results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // ═══ COMPARISON SECTIONS ═══
+  updateComparison(income, stateName);
+  updateNational(income, stateName);
+  updateRankings(income, stateName);
+
+  document.getElementById('comparisonSection').style.display = '';
+  document.getElementById('nationalSection').style.display = '';
+  document.getElementById('rankingsSection').style.display = '';
+}
+
+// ═══ POPULATE COMPARE DROPDOWNS ═══
+['compareStateA','compareStateB'].forEach(id => {
+  const sel = document.getElementById(id);
+  Object.keys(STATE_TAX).sort().forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    sel.appendChild(opt);
+  });
+});
+
+document.getElementById('compareStateA').addEventListener('change', () => {
+  const income = parseInt(incomeInput.value.replace(/[^0-9]/g,''),10);
+  if(income>0) updateComparison(income);
+});
+document.getElementById('compareStateB').addEventListener('change', () => {
+  const income = parseInt(incomeInput.value.replace(/[^0-9]/g,''),10);
+  if(income>0) updateComparison(income);
+});
+
+let compareChartInstance = null;
+let nationalChartInstance = null;
+
+function updateComparison(income, currentState) {
+  const selA = document.getElementById('compareStateA');
+  const selB = document.getElementById('compareStateB');
+  if (currentState) {
+    selA.value = currentState;
+    // Pick a contrasting state
+    const noTaxStates = Object.keys(STATE_TAX).filter(s => STATE_TAX[s].noTax && s !== currentState);
+    const highTaxStates = ['California','New York','Oregon','Minnesota','New Jersey'];
+    if (STATE_TAX[currentState].noTax) {
+      selB.value = highTaxStates.find(s => s !== currentState) || 'California';
+    } else {
+      selB.value = noTaxStates[0] || 'Texas';
+    }
+  }
+
+  const stateA = selA.value;
+  const stateB = selB.value;
+  const taxA = calcStateTax(income, stateA);
+  const taxB = calcStateTax(income, stateB);
+  const rateA = income > 0 ? (taxA/income*100) : 0;
+  const rateB = income > 0 ? (taxB/income*100) : 0;
+  const diff = taxB - taxA;
+
+  const diffClass = diff > 0 ? 'extra' : diff < 0 ? 'savings' : '';
+  const diffText = diff === 0 ? 'Same tax burden' :
+    (diff > 0 ? `You'd pay ${fmtDollar(Math.abs(diff))} more` : `You'd save ${fmtDollar(Math.abs(diff))}`) +
+    ` in ${stateB} vs ${stateA}`;
+
+  document.getElementById('compareSummary').innerHTML = `
+    <div class="compare-state-box">
+      <div class="cs-name">${stateA}</div>
+      <div class="cs-tax">${fmtDollar(taxA)}</div>
+      <div class="cs-rate">${rateA.toFixed(1)}% effective</div>
+    </div>
+    <div class="compare-diff ${diffClass}">
+      <div class="diff-amount">${diff === 0 ? '—' : (diff > 0 ? '+' : '-') + fmtDollar(Math.abs(diff))}</div>
+      <div class="diff-label">${diffText}</div>
+    </div>
+    <div class="compare-state-box">
+      <div class="cs-name">${stateB}</div>
+      <div class="cs-tax">${fmtDollar(taxB)}</div>
+      <div class="cs-rate">${rateB.toFixed(1)}% effective</div>
+    </div>
+  `;
+
+  // Spending comparison chart
+  const spendA = STATE_SPENDING[stateA] || STATE_SPENDING_DEFAULT;
+  const spendB = STATE_SPENDING[stateB] || STATE_SPENDING_DEFAULT;
+  const categories = STATE_SPENDING_DEFAULT.map(s => s.name);
+  const getPct = (spend, cat) => { const f = spend.find(s => s.name === cat); return f ? f.pct : 0; };
+
+  if (compareChartInstance) compareChartInstance.destroy();
+  compareChartInstance = new Chart(document.getElementById('compareChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: categories,
+      datasets: [
+        { label: stateA, data: categories.map(c => getPct(spendA, c)), backgroundColor: 'rgba(99,102,241,0.7)', borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.8 },
+        { label: stateB, data: categories.map(c => getPct(spendB, c)), backgroundColor: 'rgba(6,182,212,0.7)', borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.8 }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { callback: v => v + '%', color: '#94a3b8', font: { family: "'Inter'" } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+        y: { ticks: { color: '#5a6a7e', font: { family: "'Inter'", size: 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { labels: { color: '#5a6a7e', font: { family: "'Inter'" }, usePointStyle: true, pointStyleWidth: 10 } },
+        tooltip: {
+          backgroundColor: 'rgba(255,255,255,0.95)', borderColor: 'rgba(0,0,0,0.1)', borderWidth: 1,
+          titleColor: '#1a2332', bodyColor: '#5a6a7e', cornerRadius: 8, padding: 12,
+          callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' },
+          bodyFont: { family: "'Inter'" }, titleFont: { family: "'Inter'" }
+        }
+      }
+    }
+  });
+}
+
+function updateNational(income, stateName) {
+  const stateSpend = STATE_SPENDING[stateName] || STATE_SPENDING_DEFAULT;
+  const categories = STATE_SPENDING_DEFAULT.map(s => s.name);
+  const getPct = (spend, cat) => { const f = spend.find(s => s.name === cat); return f ? f.pct : 0; };
+
+  document.getElementById('nationalTitle').textContent = stateName + ' vs National Average';
+  document.getElementById('nationalSub').textContent = 'Spending allocation comparison — your state vs the 50-state average';
+
+  if (nationalChartInstance) nationalChartInstance.destroy();
+  nationalChartInstance = new Chart(document.getElementById('nationalChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: categories,
+      datasets: [
+        { label: stateName, data: categories.map(c => getPct(stateSpend, c)), backgroundColor: 'rgba(99,102,241,0.75)', borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.8 },
+        { label: 'National Avg', data: categories.map(c => getPct(STATE_SPENDING_DEFAULT, c)), backgroundColor: 'rgba(148,163,184,0.5)', borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.8 }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { callback: v => v + '%', color: '#94a3b8', font: { family: "'Inter'" } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+        y: { ticks: { color: '#5a6a7e', font: { family: "'Inter'", size: 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { labels: { color: '#5a6a7e', font: { family: "'Inter'" }, usePointStyle: true, pointStyleWidth: 10 } },
+        tooltip: {
+          backgroundColor: 'rgba(255,255,255,0.95)', borderColor: 'rgba(0,0,0,0.1)', borderWidth: 1,
+          titleColor: '#1a2332', bodyColor: '#5a6a7e', cornerRadius: 8, padding: 12,
+          callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' },
+          bodyFont: { family: "'Inter'" }, titleFont: { family: "'Inter'" }
+        }
+      }
+    }
+  });
+
+  // Deviations
+  let devsHTML = '';
+  categories.forEach(cat => {
+    const statePct = getPct(stateSpend, cat);
+    const natPct = getPct(STATE_SPENDING_DEFAULT, cat);
+    const diff = statePct - natPct;
+    if (Math.abs(diff) > 5) {
+      const cls = diff > 0 ? 'higher' : 'lower';
+      const arrow = diff > 0 ? '↑' : '↓';
+      devsHTML += `<span class="deviation-tag ${cls}">${arrow} ${cat}: ${diff > 0 ? '+' : ''}${diff}pp vs avg</span>`;
+    }
+  });
+  document.getElementById('nationalDeviations').innerHTML = devsHTML || '<span style="font-size:0.82rem;color:var(--text-muted);">No significant deviations from national averages.</span>';
+}
+
+function updateRankings(income, stateName) {
+  // Calculate all state effective rates
+  const allStates = Object.keys(STATE_TAX).sort();
+  const rates = allStates.map(s => ({ state: s, rate: income > 0 ? calcStateTax(income, s) / income * 100 : 0 }));
+  rates.sort((a, b) => b.rate - a.rate); // highest first
+  const taxRank = rates.findIndex(r => r.state === stateName) + 1;
+
+  // Education rank (K-12 + Higher Ed)
+  const eduData = allStates.map(s => {
+    const sp = STATE_SPENDING[s] || STATE_SPENDING_DEFAULT;
+    const k12 = (sp.find(x => x.name === 'K-12 Education') || {pct:0}).pct;
+    const higher = (sp.find(x => x.name === 'Higher Education') || {pct:0}).pct;
+    return { state: s, pct: k12 + higher };
+  });
+  eduData.sort((a, b) => b.pct - a.pct);
+  const eduRank = eduData.findIndex(r => r.state === stateName) + 1;
+
+  // Healthcare rank
+  const healthData = allStates.map(s => {
+    const sp = STATE_SPENDING[s] || STATE_SPENDING_DEFAULT;
+    return { state: s, pct: (sp.find(x => x.name === 'Medicaid & Health') || {pct:0}).pct };
+  });
+  healthData.sort((a, b) => b.pct - a.pct);
+  const healthRank = healthData.findIndex(r => r.state === stateName) + 1;
+
+  const total = allStates.length;
+  const stateRate = rates.find(r => r.state === stateName);
+  const stateEdu = eduData.find(r => r.state === stateName);
+  const stateHealth = healthData.find(r => r.state === stateName);
+
+  function renderRankBar(containerId, rank, total, valueId, valueText) {
+    document.getElementById(valueId).innerHTML = `#${rank} <span style="font-size:0.85rem;font-weight:500;color:var(--text-secondary);">of ${total}</span>`;
+    const pct = ((rank - 1) / (total - 1)) * 100;
+    document.getElementById(containerId).innerHTML = `
+      <div class="rank-bar-track"><div class="rank-marker" style="left:${pct}%"></div></div>
+      <div class="rank-bar-labels"><span>Highest</span><span>Lowest</span></div>
+    `;
+  }
+
+  renderRankBar('rankTaxBar', taxRank, total, 'rankTaxValue', `#${taxRank}`);
+  renderRankBar('rankEduBar', eduRank, total, 'rankEduValue', `#${eduRank}`);
+  renderRankBar('rankHealthBar', healthRank, total, 'rankHealthValue', `#${healthRank}`);
 }
 </script>
 </body>
