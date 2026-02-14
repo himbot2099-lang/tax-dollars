@@ -2608,6 +2608,15 @@ function animateValue(el, target, prefix = '', suffix = '', duration = 800) {
 }
 
 // ═══ BRACKET HELPERS ═══
+function fmtRate(rate) {
+  // Show exact percentage with no unnecessary trailing zeros
+  // rate is decimal (e.g. 0.0575 -> "5.75%")
+  const pct = rate * 100;
+  // Use up to 3 decimal places, strip trailing zeros
+  let s = pct.toFixed(3).replace(/\.?0+$/, '');
+  return s + '%';
+}
+
 function getMarginalRate(taxableIncome, brackets) {
   let marginal = brackets[0].rate;
   for (const b of brackets) {
@@ -2634,14 +2643,14 @@ function buildBracketPanel(type, brackets, taxableIncome, totalTax, effRate, gro
 
     html += `<div class="bracket-row ${isCurrentBracket ? 'bracket-active' : ''}" style="${inBracket === 0 ? 'opacity:0.4;' : ''}">
       <span class="bracket-range">${rangeText}</span>
-      <span class="bracket-rate">${(b.rate * 100).toFixed(b.rate * 100 % 1 === 0 ? 0 : 1)}%</span>
+      <span class="bracket-rate">${fmtRate(b.rate)}</span>
       <span>${inBracket > 0 ? fmtDollar(inBracket) : '—'}</span>
       <span class="bracket-tax">${inBracket > 0 ? fmtDollar(taxInBracket) : '—'}</span>
     </div>`;
   });
 
   html += `<div class="bracket-total-row"><span>Total ${label} Tax</span><span>${fmtDollar(totalTax)}</span></div>`;
-  html += `<div class="bracket-effective">Effective rate: ${effRate.toFixed(1)}% of ${fmtDollar(grossIncome)} gross income</div>`;
+  html += `<div class="bracket-effective">Effective rate: ${effRate.toFixed(2)}% of ${fmtDollar(grossIncome)} gross income</div>`;
   body.innerHTML = html;
 }
 
@@ -2757,7 +2766,7 @@ function createPieChart(canvasId, labels, data, colors, centerText, centerSub) {
           callbacks: {
             label(ctx) {
               const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
-              return ctx.label + ': ' + fmtDollar(ctx.raw) + ' (' + ((ctx.raw/total)*100).toFixed(1) + '%)';
+              return ctx.label + ': ' + fmtDollar(ctx.raw) + ' (' + ((ctx.raw/total)*100).toFixed(2) + '%)';
             }
           },
           bodyFont: { family: "'Inter', sans-serif" },
@@ -2813,15 +2822,15 @@ function calculate() {
   animateValue(document.getElementById('sumState'), Math.round(stateTax), '$');
 
   // Show marginal rate as main value, effective as subtitle
-  document.getElementById('sumFedRate').textContent = (fedMarginal * 100).toFixed(0) + '%';
-  document.getElementById('sumFedRateSub').textContent = fedEffRate.toFixed(1) + '% effective';
+  document.getElementById('sumFedRate').textContent = fmtRate(fedMarginal);
+  document.getElementById('sumFedRateSub').textContent = fedEffRate.toFixed(2) + '% effective';
 
   if (stateData && stateData.noTax) {
     document.getElementById('sumStateRate').textContent = '0%';
     document.getElementById('sumStateRateSub').textContent = 'No income tax';
   } else {
-    document.getElementById('sumStateRate').textContent = (stateMarginal * 100).toFixed(1) + '%';
-    document.getElementById('sumStateRateSub').textContent = stateEffRate.toFixed(1) + '% effective';
+    document.getElementById('sumStateRate').textContent = fmtRate(stateMarginal);
+    document.getElementById('sumStateRateSub').textContent = stateEffRate.toFixed(2) + '% effective';
   }
 
   // Build bracket detail panels
@@ -3000,7 +3009,7 @@ function updateComparison(income, currentState) {
     <div class="compare-state-box">
       <div class="cs-name">${stateA}</div>
       <div class="cs-tax">${fmtDollar(taxA)}</div>
-      <div class="cs-rate">${rateA.toFixed(1)}% effective</div>
+      <div class="cs-rate">${rateA.toFixed(2)}% effective</div>
     </div>
     <div class="compare-diff ${diffClass}">
       <div class="diff-amount">${diff === 0 ? '—' : (diff > 0 ? '+' : '-') + fmtDollar(Math.abs(diff))}</div>
@@ -3009,7 +3018,7 @@ function updateComparison(income, currentState) {
     <div class="compare-state-box">
       <div class="cs-name">${stateB}</div>
       <div class="cs-tax">${fmtDollar(taxB)}</div>
-      <div class="cs-rate">${rateB.toFixed(1)}% effective</div>
+      <div class="cs-rate">${rateB.toFixed(2)}% effective</div>
     </div>
   `;
 
