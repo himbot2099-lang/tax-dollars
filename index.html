@@ -110,21 +110,28 @@ header {
   overflow: hidden;
 }
 
-.header-emoji-bg {
+.header-flags-bg {
   position: absolute;
-  inset: 0;
-  font-size: 2rem;
-  line-height: 2.4rem;
-  letter-spacing: 0.3rem;
-  word-spacing: 0.5rem;
-  opacity: 0.06;
+  inset: -20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0.07;
   pointer-events: none;
   user-select: none;
   overflow: hidden;
-  word-break: break-all;
   z-index: 0;
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 20%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 20%, transparent 70%);
+  mask-image: radial-gradient(ellipse 65% 65% at 50% 45%, black 15%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 45%, black 15%, transparent 65%);
+}
+
+.header-flags-bg img {
+  width: 36px;
+  height: 27px;
+  border-radius: 3px;
+  object-fit: cover;
 }
 
 .header-badge, header h1, header p {
@@ -1312,7 +1319,7 @@ footer a:hover {
 <div class="bg-grid"></div>
 
 <header>
-  <div class="header-emoji-bg" aria-hidden="true">🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️🏛️💰📊🗽🦅💵🏦🗺️</div>
+  <div class="header-flags-bg" id="headerFlagsBg" aria-hidden="true"></div>
   <div class="header-badge">📊 2025 Tax Year · Updated Data</div>
   <h1>Where Are My Tax<br>Dollars Going?</h1>
   <p>See exactly how your federal and state income taxes are spent — <span class="tagline-highlight">down to the dollar</span>.</p>
@@ -3194,6 +3201,22 @@ function updateRankings(income, stateName) {
   renderRankBar('rankEduBar', eduRank, total, 'rankEduValue', `#${eduRank}`);
   renderRankBar('rankHealthBar', healthRank, total, 'rankHealthValue', `#${healthRank}`);
 }
+
+// ═══ HEADER STATE FLAGS BACKGROUND ═══
+(function() {
+  const codes = ['al','ak','az','ar','ca','co','ct','de','fl','ga','hi','id','il','in','ia','ks','ky','la','me','md','ma','mi','mn','ms','mo','mt','ne','nv','nh','nj','nm','ny','nc','nd','oh','ok','or','pa','ri','sc','sd','tn','tx','ut','vt','va','wa','wv','wi','wy'];
+  const container = document.getElementById('headerFlagsBg');
+  // Shuffle and repeat to fill space
+  const shuffled = [...codes].sort(() => Math.random() - 0.5);
+  const flags = [...shuffled, ...shuffled.sort(() => Math.random() - 0.5)];
+  flags.forEach(code => {
+    const img = document.createElement('img');
+    img.src = 'https://flagcdn.com/48x36/us-' + code + '.png';
+    img.alt = '';
+    img.loading = 'lazy';
+    container.appendChild(img);
+  });
+})();
 </script>
 </body>
 </html>
