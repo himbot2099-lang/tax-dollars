@@ -404,6 +404,154 @@ header p {
   display: inline-block;
 }
 
+/* ═══ BRACKET DETAIL PANELS ═══ */
+.clickable-rate {
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 12px;
+  padding: 8px 12px !important;
+}
+
+.clickable-rate:hover {
+  background: rgba(99,102,241,0.08);
+}
+
+.rate-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.bracket-detail-panel {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.3s ease;
+}
+
+.bracket-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.bracket-detail-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.bracket-close {
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.bracket-close:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+
+.bracket-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr 90px;
+  gap: 8px;
+  padding: 10px 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  align-items: center;
+}
+
+.bracket-row:last-child {
+  border-bottom: none;
+}
+
+.bracket-row.bracket-header {
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--card-border);
+  padding-bottom: 8px;
+}
+
+.bracket-row.bracket-active {
+  background: rgba(99,102,241,0.06);
+  border-radius: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  font-weight: 600;
+}
+
+.bracket-row .bracket-range {
+  color: var(--text-secondary);
+}
+
+.bracket-row .bracket-rate {
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+}
+
+.bracket-row .bracket-tax {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.bracket-row .bracket-bar {
+  position: relative;
+  height: 6px;
+  background: var(--bg-subtle);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bracket-row .bracket-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.bracket-total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0 0;
+  margin-top: 8px;
+  border-top: 2px solid var(--card-border);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.bracket-effective {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 700px) {
+  .bracket-row {
+    grid-template-columns: 1fr 60px 1fr 70px;
+    font-size: 0.78rem;
+  }
+}
+
 /* ═══ CHARTS ═══ */
 .charts-grid {
   display: grid;
@@ -1161,14 +1309,32 @@ footer a:hover {
         <div class="label" id="sumStateLabel"><span class="icon">🗺️</span> State Tax</div>
         <div class="value" id="sumState">—</div>
       </div>
-      <div class="summary-item">
-        <div class="label"><span class="icon">📊</span> Federal Rate</div>
+      <div class="summary-item clickable-rate" onclick="toggleBracketDetail('fed')">
+        <div class="label"><span class="icon">📊</span> Federal Rates <span style="font-size:0.65rem;opacity:0.6;">▼</span></div>
         <div class="value" id="sumFedRate">—</div>
+        <div class="rate-subtitle" id="sumFedRateSub"></div>
       </div>
-      <div class="summary-item">
-        <div class="label" id="sumStateRateLabel"><span class="icon">📊</span> State Rate</div>
+      <div class="summary-item clickable-rate" onclick="toggleBracketDetail('state')">
+        <div class="label" id="sumStateRateLabel"><span class="icon">📊</span> State Rates <span style="font-size:0.65rem;opacity:0.6;">▼</span></div>
         <div class="value" id="sumStateRate">—</div>
+        <div class="rate-subtitle" id="sumStateRateSub"></div>
       </div>
+    </div>
+
+    <!-- Bracket Detail Panels -->
+    <div class="bracket-detail-panel" id="fedBracketPanel" style="display:none;">
+      <div class="bracket-detail-header">
+        <h3>🏛️ Federal Income Tax Brackets (2025 Single Filer)</h3>
+        <button class="bracket-close" onclick="toggleBracketDetail('fed')">✕</button>
+      </div>
+      <div class="bracket-detail-body" id="fedBracketBody"></div>
+    </div>
+    <div class="bracket-detail-panel" id="stateBracketPanel" style="display:none;">
+      <div class="bracket-detail-header">
+        <h3 id="stateBracketTitle">🗺️ State Income Tax Brackets</h3>
+        <button class="bracket-close" onclick="toggleBracketDetail('state')">✕</button>
+      </div>
+      <div class="bracket-detail-body" id="stateBracketBody"></div>
     </div>
 
     <div class="charts-grid reveal">
@@ -2441,6 +2607,52 @@ function animateValue(el, target, prefix = '', suffix = '', duration = 800) {
   requestAnimationFrame(update);
 }
 
+// ═══ BRACKET HELPERS ═══
+function getMarginalRate(taxableIncome, brackets) {
+  let marginal = brackets[0].rate;
+  for (const b of brackets) {
+    if (taxableIncome > b.min) marginal = b.rate;
+  }
+  return marginal;
+}
+
+function buildBracketPanel(type, brackets, taxableIncome, totalTax, effRate, grossIncome, label) {
+  const body = document.getElementById(type + 'BracketBody');
+  let html = '<div class="bracket-row bracket-header"><span>Income Range</span><span style="text-align:center;">Rate</span><span>Your Income in Bracket</span><span style="text-align:right;">Tax Owed</span></div>';
+  const maxTaxInBracket = Math.max(...brackets.map(b => {
+    const inBracket = Math.max(0, Math.min(taxableIncome, b.max) - b.min);
+    return inBracket * b.rate;
+  }));
+
+  brackets.forEach((b, i) => {
+    const inBracket = Math.max(0, Math.min(taxableIncome, b.max) - b.min);
+    const taxInBracket = inBracket * b.rate;
+    const isActive = taxableIncome > b.min && (i === brackets.length - 1 || taxableIncome <= brackets[i].max || taxableIncome > b.min);
+    const isCurrentBracket = taxableIncome > b.min && (b.max === Infinity || taxableIncome <= b.max);
+    const rangeText = b.max === Infinity ? fmtDollar(b.min) + '+' : fmtDollar(b.min) + ' - ' + fmtDollar(b.max);
+    const barWidth = maxTaxInBracket > 0 ? (taxInBracket / maxTaxInBracket * 100) : 0;
+
+    html += `<div class="bracket-row ${isCurrentBracket ? 'bracket-active' : ''}" style="${inBracket === 0 ? 'opacity:0.4;' : ''}">
+      <span class="bracket-range">${rangeText}</span>
+      <span class="bracket-rate">${(b.rate * 100).toFixed(b.rate * 100 % 1 === 0 ? 0 : 1)}%</span>
+      <span>${inBracket > 0 ? fmtDollar(inBracket) : '—'}</span>
+      <span class="bracket-tax">${inBracket > 0 ? fmtDollar(taxInBracket) : '—'}</span>
+    </div>`;
+  });
+
+  html += `<div class="bracket-total-row"><span>Total ${label} Tax</span><span>${fmtDollar(totalTax)}</span></div>`;
+  html += `<div class="bracket-effective">Effective rate: ${effRate.toFixed(1)}% of ${fmtDollar(grossIncome)} gross income</div>`;
+  body.innerHTML = html;
+}
+
+function toggleBracketDetail(type) {
+  const panel = document.getElementById(type + 'BracketPanel');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none';
+  panel.style.display = isHidden ? '' : 'none';
+  if (isHidden) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
 // ═══ TAX CALCULATION ═══
 function calcBracketTax(income, brackets) {
   let tax = 0;
@@ -2582,33 +2794,50 @@ function calculate() {
   const fedTax = calcFederalTax(income);
   const stateTax = calcStateTax(income, stateName);
   const totalTax = fedTax + stateTax;
-  const fedRate = income > 0 ? ((fedTax / income) * 100) : 0;
-  const stateRate = income > 0 ? ((stateTax / income) * 100) : 0;
+  const fedEffRate = income > 0 ? ((fedTax / income) * 100) : 0;
+  const stateEffRate = income > 0 ? ((stateTax / income) * 100) : 0;
+
+  // Get marginal rates
+  const fedTaxableIncome = Math.max(0, income - FEDERAL_STANDARD_DEDUCTION);
+  const fedMarginal = getMarginalRate(fedTaxableIncome, FEDERAL_BRACKETS);
+  const stateData = STATE_TAX[stateName];
+  let stateMarginal = 0;
+  if (stateData && !stateData.noTax) {
+    const stateTaxableIncome = Math.max(0, income - (stateData.deduction || 0) - (stateData.exemption || 0));
+    stateMarginal = getMarginalRate(stateTaxableIncome, stateData.brackets);
+  }
 
   // Animate summary values
   animateValue(document.getElementById('sumIncome'), income, '$');
   animateValue(document.getElementById('sumFederal'), Math.round(fedTax), '$');
   animateValue(document.getElementById('sumState'), Math.round(stateTax), '$');
 
-  // Animate federal rate
-  const fedRateEl = document.getElementById('sumFedRate');
-  const fedRateStart = performance.now();
-  (function animFedRate(now) {
-    const p = Math.min((now - fedRateStart) / 800, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    fedRateEl.textContent = (fedRate * e).toFixed(1) + '%';
-    if (p < 1) requestAnimationFrame(animFedRate);
-  })(fedRateStart);
+  // Show marginal rate as main value, effective as subtitle
+  document.getElementById('sumFedRate').textContent = (fedMarginal * 100).toFixed(0) + '%';
+  document.getElementById('sumFedRateSub').textContent = fedEffRate.toFixed(1) + '% effective';
 
-  // Animate state rate
-  const stateRateEl = document.getElementById('sumStateRate');
-  const stateRateStart = performance.now();
-  (function animStateRate(now) {
-    const p = Math.min((now - stateRateStart) / 800, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    stateRateEl.textContent = (stateRate * e).toFixed(1) + '%';
-    if (p < 1) requestAnimationFrame(animStateRate);
-  })(stateRateStart);
+  if (stateData && stateData.noTax) {
+    document.getElementById('sumStateRate').textContent = '0%';
+    document.getElementById('sumStateRateSub').textContent = 'No income tax';
+  } else {
+    document.getElementById('sumStateRate').textContent = (stateMarginal * 100).toFixed(1) + '%';
+    document.getElementById('sumStateRateSub').textContent = stateEffRate.toFixed(1) + '% effective';
+  }
+
+  // Build bracket detail panels
+  buildBracketPanel('fed', FEDERAL_BRACKETS, fedTaxableIncome, fedTax, fedEffRate, income, 'Federal');
+  if (stateData && !stateData.noTax) {
+    const sTI = Math.max(0, income - (stateData.deduction || 0) - (stateData.exemption || 0));
+    buildBracketPanel('state', stateData.brackets, sTI, stateTax, stateEffRate, income, stateName);
+    document.getElementById('stateBracketTitle').textContent = '🗺️ ' + stateName + ' Income Tax Brackets (2025 Single Filer)';
+  } else {
+    document.getElementById('stateBracketBody').innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-style:italic;">No state income tax brackets to display.</div>';
+    document.getElementById('stateBracketTitle').textContent = '🗺️ ' + stateName + ' Income Tax Brackets';
+  }
+
+  // Hide panels on recalculate
+  document.getElementById('fedBracketPanel').style.display = 'none';
+  document.getElementById('stateBracketPanel').style.display = 'none';
 
   document.getElementById('sumStateLabel').innerHTML = '<span class="icon">🗺️</span> ' + stateName + ' Tax';
   document.getElementById('sumStateRateLabel').innerHTML = '<span class="icon">📊</span> ' + stateName + ' Rate';
