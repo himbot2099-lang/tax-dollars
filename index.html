@@ -1162,8 +1162,12 @@ footer a:hover {
         <div class="value" id="sumState">—</div>
       </div>
       <div class="summary-item">
-        <div class="label"><span class="icon">📊</span> Effective Rate</div>
-        <div class="value" id="sumRate">—</div>
+        <div class="label"><span class="icon">📊</span> Federal Rate</div>
+        <div class="value" id="sumFedRate">—</div>
+      </div>
+      <div class="summary-item">
+        <div class="label" id="sumStateRateLabel"><span class="icon">📊</span> State Rate</div>
+        <div class="value" id="sumStateRate">—</div>
       </div>
     </div>
 
@@ -2578,23 +2582,36 @@ function calculate() {
   const fedTax = calcFederalTax(income);
   const stateTax = calcStateTax(income, stateName);
   const totalTax = fedTax + stateTax;
-  const effectiveRate = income > 0 ? ((totalTax / income) * 100).toFixed(1) : '0.0';
+  const fedRate = income > 0 ? ((fedTax / income) * 100) : 0;
+  const stateRate = income > 0 ? ((stateTax / income) * 100) : 0;
 
   // Animate summary values
   animateValue(document.getElementById('sumIncome'), income, '$');
   animateValue(document.getElementById('sumFederal'), Math.round(fedTax), '$');
   animateValue(document.getElementById('sumState'), Math.round(stateTax), '$');
-  const rateEl = document.getElementById('sumRate');
-  const rateNum = parseFloat(effectiveRate);
-  const rateStart = performance.now();
-  (function animRate(now) {
-    const p = Math.min((now - rateStart) / 800, 1);
+
+  // Animate federal rate
+  const fedRateEl = document.getElementById('sumFedRate');
+  const fedRateStart = performance.now();
+  (function animFedRate(now) {
+    const p = Math.min((now - fedRateStart) / 800, 1);
     const e = 1 - Math.pow(1 - p, 3);
-    rateEl.textContent = (rateNum * e).toFixed(1) + '%';
-    if (p < 1) requestAnimationFrame(animRate);
-  })(rateStart);
+    fedRateEl.textContent = (fedRate * e).toFixed(1) + '%';
+    if (p < 1) requestAnimationFrame(animFedRate);
+  })(fedRateStart);
+
+  // Animate state rate
+  const stateRateEl = document.getElementById('sumStateRate');
+  const stateRateStart = performance.now();
+  (function animStateRate(now) {
+    const p = Math.min((now - stateRateStart) / 800, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    stateRateEl.textContent = (stateRate * e).toFixed(1) + '%';
+    if (p < 1) requestAnimationFrame(animStateRate);
+  })(stateRateStart);
 
   document.getElementById('sumStateLabel').innerHTML = '<span class="icon">🗺️</span> ' + stateName + ' Tax';
+  document.getElementById('sumStateRateLabel').innerHTML = '<span class="icon">📊</span> ' + stateName + ' Rate';
 
   // Federal chart
   document.getElementById('fedChartTitle').textContent = 'Your Federal Tax Receipt';
